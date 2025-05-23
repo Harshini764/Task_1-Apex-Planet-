@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Favorite Animal</title>
+  <style>
+    body {
+      background-color: #fff8f0;
+      font-family: 'Verdana', sans-serif;
+      color: #333;
+      padding: 40px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #d97706;
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+
+    input {
+      padding: 10px;
+      font-size: 16px;
+      width: 250px;
+      border: 2px solid #d97706;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      background-color: #f59e0b;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin: 10px;
+    }
+
+    button:hover {
+      background-color: #b45309;
+    }
+
+    #output {
+      margin-top: 30px;
+      font-size: 20px;
+      color: #2f855a;
+    }
+
+    #animalImage {
+      margin-top: 20px;
+      width: 250px;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>What's Your Favorite Animal?</h1>
+
+  <input type="text" id="animalInput" placeholder="Type an animal...">
+  <br>
+  <button onclick="showFavoriteAnimal()">Submit</button>
+
+  <div id="output"></div>
+  <img id="animalImage" src="" alt="" style="display:none;">
+
+  <script>
+    function showFavoriteAnimal() {
+      const animal = document.getElementById('animalInput').value.trim().toLowerCase();
+      const outputDiv = document.getElementById('output');
+      const animalImage = document.getElementById('animalImage');
+
+      if (animal === '') {
+        alert("Please type an animal name first!");
+        outputDiv.innerHTML = '';
+        animalImage.style.display = 'none';
+        return;
+      }
+
+      const formattedAnimal = animal.charAt(0).toUpperCase() + animal.slice(1);
+      alert(`${formattedAnimal} is a great choice!`);
+      outputDiv.innerHTML = `You love ❤️ <strong>${formattedAnimal}</strong>!`;
+
+      // Define some known animals and their image URLs
+      const animalImages = {
+        panda: "https://upload.wikimedia.org/wikipedia/commons/0/0f/Grosser_Panda.JPG",
+        dog: "https://upload.wikimedia.org/wikipedia/commons/6/6e/Golde33443.jpg",
+        cat: "https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg",
+        elephant: "https://upload.wikimedia.org/wikipedia/commons/3/37/African_Bush_Elephant.jpg",
+        lion: "https://upload.wikimedia.org/wikipedia/commons/7/73/Lion_waiting_in_Namibia.jpg"
+      };
+
+      if (animalImages[animal]) {
+        animalImage.src = animalImages[animal];
+        animalImage.alt = formattedAnimal;
+        animalImage.style.display = 'block';
+      } else {
+        animalImage.style.display = 'none';
+      }
+    }
+  </script>
+
+</body>
+</html>
